@@ -31,7 +31,6 @@ def main(page: ft.Page):
         history_text.value = 'История приветствий:'
         page.update()
 
-
     def delete_last(_):
         if greeting_history:
             greeting_history.pop()

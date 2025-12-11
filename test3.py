@@ -1,7 +1,6 @@
 import flet as ft
 from datetime import datetime
 
-
 def main(page: ft.Page):
     page.title = 'Мое первое приложение'
     page.theme_mode = ft.ThemeMode.LIGHT
@@ -26,6 +25,7 @@ def main(page: ft.Page):
         else:
             greeting_text.value = 'Введите корректное имя'
             greeting_text.color = ft.Colors.RED
+
 
         page.update()
 

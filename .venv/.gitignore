@@ -1,0 +1,10 @@
+.venv/
+.idea/misc.xml/
+main.py/
+.idea/
+/.idea/
+/.venv/
+/.idea/.
+/.venv/.gitignore
+test3.py/
+test3.py
