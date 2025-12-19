@@ -1,35 +1,32 @@
 import sqlite3
 from config import path_db
 from db import queries
+from datetime import datetime
 
 def init_db():
     conn = sqlite3.connect(path_db)
     cursor = conn.cursor()
     cursor.execute(queries.CREATE_TASKS)
-    print("База данных подключена")
     conn.commit()
     conn.close()
-
 
 def add_task(task):
     conn = sqlite3.connect(path_db)
     cursor = conn.cursor()
-    cursor.execute(queries.INSERT_TASKS, (task, ))
-    conn.commit()
+    created_at = datetime.now().strftime("%Y-%m-%d %H:%M")
+    cursor.execute(queries.INSERT_TASKS, (task, created_at))
     task_id = cursor.lastrowid
+    conn.commit()
     conn.close()
     return task_id
-
 
 def get_task():
     conn = sqlite3.connect(path_db)
     cursor = conn.cursor()
     cursor.execute(queries.SELECT_TASKS)
-    conn.commit()
     tasks = cursor.fetchall()
     conn.close()
     return tasks
-
 
 def update_task(task_id, new_task):
     conn = sqlite3.connect(path_db)
@@ -38,10 +35,9 @@ def update_task(task_id, new_task):
     conn.commit()
     conn.close()
 
-
 def delete_task(task_id):
     conn = sqlite3.connect(path_db)
     cursor = conn.cursor()
-    cursor.execute(queries.DELETE_TASKS, (task_id, ))
+    cursor.execute(queries.DELETE_TASKS, (task_id,))
     conn.commit()
     conn.close()
